@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dual Voice Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#F7F8FA">
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <h1 data-i18n="title">双人对话语音生成器</h1>
+        <div class="lang-switcher">
+            <button id="btnLang">🌐 Language</button>
+            <div id="langMenu" class="lang-menu">
+                <button data-lang="zh-CN">中文 (简体)</button>
+                <button data-lang="zh-TW">中文 (繁體)</button>
+                <button data-lang="en">English</button>
+                <button data-lang="ja">日本語</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Script Input Card -->
+        <div class="card">
+            <textarea id="scriptInput" data-i18n-placeholder="scriptPlaceholder" spellcheck="false"></textarea>
+            <span class="subtitle" data-i18n="subtitle">对话 / 相声 / 节奏音轨工具</span>
+        </div>
+
+        <!-- Settings Card -->
+        <div class="card">
+            <div class="voice-group">
+                <label data-i18n="roleA">角色 A 声线</label>
+                <select id="voiceA"></select>
+            </div>
+            <div class="voice-group">
+                <label data-i18n="roleB">角色 B 声线</label>
+                <select id="voiceB"></select>
+            </div>
+        </div>
+
+        <!-- Actions Card -->
+        <div class="card">
+            <div class="actions">
+                <button id="btnPlay" data-i18n="generate">生成并试听</button>
+                <button id="btnExport" data-i18n="export">导出音轨</button>
+            </div>
+            
+            <div id="downloadSection" class="hidden" style="margin-top: 16px; border-top: 1px solid var(--color-border); padding-top: 16px;">
+                <audio id="previewAudio" controls></audio>
+                <a id="downloadLink" download="dialogue_track.wav">Download WAV</a>
+            </div>
+        </div>
+
+        <div class="info">
+            <small data-i18n="tip">导出的是用于剪辑的创作音轨（非真人配音）</small>
+        </div>
+    </main>
+</div>
+
+<script type="module" src="main.js"></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./service-worker.js')
+            .catch(err => console.error('SW failed', err));
+    }
+</script>
+</body>
+</html>
