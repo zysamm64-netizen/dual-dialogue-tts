@@ -1,9 +1,3 @@
-import { ScriptParser } from './js/parser.js';
-import { VoiceManager } from './js/voices.js';
-import { TTSController } from './js/tts.js';
-import { AudioRecorder } from './js/recorder.js';
-import { SFXManager } from './js/sfx.js';
-import { I18nManager } from './js/i18n.js';
 
 // DOM Elements
 const voiceASelect = document.getElementById('voiceA');
